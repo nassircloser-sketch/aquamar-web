@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://aquamar-web.vercel.app/</loc>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://aquamar-web.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://aquamar-web.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquamar-web.vercel.app/" />
+    <loc>https://aquomar.com/</loc>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://aquomar.com/" />
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://aquomar.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquomar.com/" />
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aquamar-web.vercel.app/ozono</loc>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://aquamar-web.vercel.app/ozono" />
-    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://aquamar-web.vercel.app/ozono" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquamar-web.vercel.app/ozono" />
+    <loc>https://aquomar.com/ozono</loc>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://aquomar.com/ozono" />
+    <xhtml:link rel="alternate" hreflang="ca-ES" href="https://aquomar.com/ozono" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquomar.com/ozono" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

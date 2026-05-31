@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aquamar-web.vercel.app/sitemap.xml
+Sitemap: https://aquomar.com/sitemap.xml

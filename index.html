@@ -255,6 +255,49 @@
     from { opacity:0; transform:scale(.6); }
     to   { opacity:1; transform:scale(1); }
   }
+
+  /* ── Carrusel de productos (solo móvil) ── */
+  .product-dots { display: none; }
+  @media (max-width: 767px) {
+    #product-carousel {
+      display: flex !important;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 1rem;
+      scroll-padding-left: 1rem;
+      padding: 0 1rem 0.25rem;
+      margin: 0 -1rem;            /* sangra hasta el borde de la pantalla */
+    }
+    #product-carousel::-webkit-scrollbar { display: none; }
+    #product-carousel > .premium-card {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+      /* el carrusel siempre visible (anula la animación reveal lateral) */
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .product-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.25rem;
+    }
+    .product-dots button {
+      width: 8px; height: 8px; padding: 0; border: none;
+      border-radius: 9999px;
+      background: rgba(15,23,42,0.18);
+      transition: width .25s ease, background .25s ease;
+      cursor: pointer;
+    }
+    .product-dots button.active {
+      width: 22px;
+      background: #0369A1;
+    }
+  }
   </style>
 </head>
 <body class="overflow-x-hidden">
@@ -723,8 +766,8 @@
       <p class="text-gray-500 max-w-xl mx-auto leading-relaxed">Dos tecnologías complementarias para garantizar el agua más pura posible en tu hogar o negocio.</p>
     </div>
 
-    <!-- Premium 3-col product grid -->
-    <div class="grid md:grid-cols-3 gap-6 mb-6">
+    <!-- Premium 3-col product grid (carrusel horizontal en móvil) -->
+    <div id="product-carousel" class="grid md:grid-cols-3 gap-6 mb-6">
 
       <!-- Card 1: AQUOMAR CASCADE -->
       <div class="premium-card group bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer reveal-left flex flex-col">
@@ -915,6 +958,9 @@
       </div>
 
     </div>
+
+    <!-- Puntos indicadores del carrusel (solo móvil) -->
+    <div id="product-dots" class="product-dots" aria-hidden="true"></div>
 
     <!-- Segunda fila: 2 cards -->
     <div class="grid md:grid-cols-2 gap-6 mb-6">
@@ -1796,6 +1842,56 @@
     dispatchWA(fields, 'Contacto');
     showFormSuccess(f, '#0369A1');
   });
+</script>
+<!-- Carrusel de productos: puntos indicadores (solo móvil) -->
+<script>
+  (function () {
+    const carousel = document.getElementById('product-carousel');
+    const dotsWrap = document.getElementById('product-dots');
+    if (!carousel || !dotsWrap) return;
+
+    const cards = Array.from(carousel.querySelectorAll('.premium-card'));
+    if (!cards.length) return;
+
+    // Crear un punto por cada card
+    cards.forEach((card, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Ir al producto ' + (i + 1));
+      dot.addEventListener('click', () => {
+        const carRect = carousel.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const target = carousel.scrollLeft + (cardRect.left - carRect.left);
+        carousel.scrollTo({ left: target, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsWrap.children);
+    function setActive(idx) {
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+    setActive(0);
+
+    // Detectar card activa según el scroll (coords de viewport = robusto)
+    let ticking = false;
+    carousel.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const carRect = carousel.getBoundingClientRect();
+        const center = carRect.left + carousel.clientWidth / 2;
+        let best = 0, bestDist = Infinity;
+        cards.forEach((card, i) => {
+          const r = card.getBoundingClientRect();
+          const dist = Math.abs((r.left + r.width / 2) - center);
+          if (dist < bestDist) { bestDist = dist; best = i; }
+        });
+        setActive(best);
+        ticking = false;
+      });
+    }, { passive: true });
+  })();
 </script>
 <!-- Multilingual support -->
 <script src="translations.js"></script>

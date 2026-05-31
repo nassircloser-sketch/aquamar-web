@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQUOMAR — Sistema de Ozono | Purificación Avanzada</title>
+  <meta name="description" content="Sistema de ozono AQUOMAR — 9.7 L/min, 3000x más efectivo que el cloro, 99.9% de eficacia. Sin residuos químicos. Solicita presupuesto sin compromiso." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="AQUOMAR Ozono — Purificación sin química" />
+  <meta property="og:description" content="Sistema de ozono de alta eficacia para hogares y empresas. 99.9% de eficacia, 0 residuos químicos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="theme-color" content="#050505" />
+  <link rel="canonical" href="https://aquomar.vercel.app/ozono" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Preload vídeo hero ozono -->
+  <link rel="preload" as="video" href="assets/ozono-video.mp4" type="video/mp4" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  { DEFAULT: '#0a0a0a' },
+            ocean: { DEFAULT: '#0369A1', light: '#0EA5E9' },
+            teal:  { DEFAULT: '#0D9488', light: '#14B8A6' },
+          },
+          fontFamily: {
+            sans:    ['-apple-system','BlinkMacSystemFont','Inter','SF Pro Text','Helvetica Neue','Arial','sans-serif'],
+            heading: ['-apple-system','BlinkMacSystemFont','Inter','SF Pro Display','Helvetica Neue','Arial','sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+           background: #050505; color: #f5f5f7;
+           -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+           overflow-x: hidden; width: 100%; max-width: 100%; }
+    img, video, svg { max-width: 100%; }
+    h1,h2,h3,h4 { font-family: inherit; letter-spacing: -0.03em; }
+    p, span, li { letter-spacing: -0.01em; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Navbar */
+    #navbar { transition: background .3s, border-color .3s; }
+    #navbar.scrolled { background: rgba(5,5,5,.92); border-bottom: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(20px); }
+
+    /* Hero */
+    .hero-section { min-height: 100vh; }
+
+    /* Glow lines */
+    @keyframes glow-pulse {
+      0%, 100% { opacity: .4; }
+      50%       { opacity: .9; }
+    }
+    .glow-line { animation: glow-pulse 3s ease-in-out infinite; }
+
+    /* Spec card */
+    .spec-card { border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.04); backdrop-filter: blur(10px);
+                 transition: border-color .2s, background .2s, transform .3s; }
+    .spec-card:hover { border-color: rgba(13,148,136,.5); background: rgba(13,148,136,.07); transform: translateY(-4px); }
+
+    /* Apple-style spec cards */
+    .spec-apple-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: border-color .25s ease, background .25s ease, transform .3s cubic-bezier(.25,.46,.45,.94);
+    }
+    .spec-apple-card:hover {
+      border-color: rgba(13,148,136,.45);
+      background: rgba(13,148,136,.06);
+      transform: translateY(-3px);
+    }
+
+    /* Feature card */
+    .feat-card { border: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.03);
+                 transition: border-color .25s, background .25s; }
+    .feat-card:hover { border-color: rgba(3,105,161,.4); background: rgba(3,105,161,.06); }
+
+    /* WhatsApp FAB */
+    .fab { position: fixed; bottom: 28px; right: 28px; z-index: 999;
+           width: 58px; height: 58px; border-radius: 50%; background: #25D366;
+           display: flex; align-items: center; justify-content: center;
+           box-shadow: 0 6px 24px rgba(37,211,102,.4); transition: transform .2s; cursor: pointer; }
+    .fab:hover { transform: scale(1.1); }
+
+    /* ── Scroll progress bar ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
+      background: linear-gradient(90deg, #0369A1, #0D9488);
+      width: 0%; transition: width .1s linear;
+    }
+
+    /* ── Parallax hero ── */
+    .hero-video-wrap { transform: translateY(0); will-change: transform; }
+
+    /* ── Counter numbers ── */
+    .count-num { display: inline-block; }
+
+    /* ── Split line reveal ── */
+    .split-line { overflow: hidden; }
+    .split-line span {
+      display: block;
+      transform: translateY(100%);
+      transition: transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .split-line.visible span { transform: translateY(0); }
+
+    /* ── Stagger children ── */
+    .stagger > * {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .stagger.visible > *:nth-child(1) { transition-delay: 0ms; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 100ms; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 200ms; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 300ms; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 400ms; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 500ms; }
+    .stagger.visible > * { opacity: 1; transform: translateY(0); }
+
+    /* ── Horizontal step reveal ── */
+    .step-reveal {
+      opacity: 0; transform: translateX(-20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .step-reveal.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── Glow border on scroll ── */
+    .glow-on-scroll {
+      border-color: rgba(255,255,255,0.06);
+      transition: border-color .4s ease, box-shadow .4s ease;
+    }
+    .glow-on-scroll.visible {
+      border-color: rgba(13,148,136,0.3);
+      box-shadow: 0 0 40px rgba(13,148,136,0.08);
+    }
+
+    /* ── Spec table row slide ── */
+    .table-row {
+      opacity: 0; transform: translateX(-16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .table-row.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── Product image float ── */
+    @keyframes float-y {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+    .product-float { animation: float-y 5s ease-in-out infinite; }
+
+    /* ── Hero slow-zoom cinematográfico ── */
+    @keyframes heroZoom {
+      0%   { transform: scale(1.0) translate(0%, 0%); }
+      100% { transform: scale(1.12) translate(-2%, -1%); }
+    }
+
+    /* ── Section fade bg ── */
+    .section-fade {
+      opacity: 0; transition: opacity .8s ease;
+    }
+    .section-fade.visible { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right,
+      .split-line span, .stagger > *, .step-reveal, .table-row { opacity: 1; transform: none; transition: none; }
+      .product-float { animation: none; }
+      [style*="heroZoom"] { animation: none !important; }
+    }
+
+    /* Language switcher */
+    .lang-btn-active {
+      background: rgba(255,255,255,0.20) !important;
+      color: #fff !important;
+    }
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(12px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  </style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div id="progress-bar"></div>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 border-b border-transparent">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+    <a href="index.html" class="flex items-center gap-2.5 cursor-pointer flex-shrink-0">
+      <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0369A1,#0D9488)">
+        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 8 4 12 4 16a8 8 0 0016 0c0-4-4-8-8-14z"/></svg>
+      </div>
+      <span class="text-white font-bold text-base sm:text-lg tracking-tight">AQUO<span style="color:#0EA5E9">MAR</span></span>
+    </a>
+    <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      <!-- Lang pill -->
+      <div class="flex items-center gap-0.5 rounded-xl p-1" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12)">
+        <button class="lang-btn lang-btn-active px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold text-white cursor-pointer transition-all duration-150" style="background:rgba(255,255,255,0.15)" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold text-white/50 cursor-pointer transition-all duration-150 hover:text-white" data-lang="ca" onclick="setLang('ca')">CA</button>
+        <button class="lang-btn px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold text-white/50 cursor-pointer transition-all duration-150 hover:text-white" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold text-white/50 cursor-pointer transition-all duration-150 hover:text-white" data-lang="fr" onclick="setLang('fr')">FR</button>
+      </div>
+      <!-- Back link (icon-only on mobile) -->
+      <a href="index.html" class="flex items-center gap-2 text-white/50 hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer" aria-label="Volver al inicio">
+        <svg class="w-5 h-5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span class="hidden sm:inline" data-i18n="nav.volver">Volver</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO CON IMAGEN ANIMADA ── -->
+<section class="hero-section relative flex items-center overflow-hidden">
+  <!-- Imagen máquina negra con slow-zoom cinematográfico -->
+  <div class="absolute inset-0" style="z-index:0; overflow:hidden;">
+    <img src="assets/ozono.webp" alt=""
+      style="width:100%;height:100%;object-fit:cover;object-position:center;
+             animation:heroZoom 12s ease-in-out infinite alternate;
+             filter:brightness(0.45) contrast(1.15) saturate(1.1);"
+      loading="eager" decoding="async" />
+  </div>
+
+  <!-- Overlay brutal oscuro -->
+  <div class="absolute inset-0 pointer-events-none" style="z-index:1;
+    background: linear-gradient(180deg,
+      rgba(5,5,5,0.3) 0%,
+      rgba(5,5,5,0.15) 40%,
+      rgba(5,5,5,0.7) 80%,
+      rgba(5,5,5,1) 100%);"></div>
+
+  <!-- Líneas decorativas neón -->
+  <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="z-index:2; height:1px; background:linear-gradient(90deg, transparent, rgba(13,148,136,0.6), transparent)" ></div>
+
+  <!-- Contenido hero -->
+  <div class="relative max-w-7xl mx-auto px-6 pt-32 pb-24 w-full" style="z-index:3">
+    <div class="max-w-3xl">
+      <!-- Label -->
+      <div class="inline-flex items-center gap-2 mb-8">
+        <span class="w-2 h-2 rounded-full glow-line" style="background:#0D9488"></span>
+        <span class="text-xs font-semibold uppercase tracking-widest" style="color:#0D9488" data-i18n="oz.label">Sistema de Purificación</span>
+      </div>
+
+      <!-- Título -->
+      <h1 class="text-6xl md:text-8xl font-black text-white leading-none mb-6" style="letter-spacing:-0.04em">
+        <div class="split-line"><span>AQUOMAR</span></div>
+        <div class="split-line" style="transition-delay:120ms"><span style="color:#0D9488">OZONO</span></div>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-white/60 font-light leading-relaxed mb-10 max-w-xl" style="letter-spacing:-0.01em" data-i18n="oz.desc">
+        La tecnología de desinfección más avanzada del mercado. 3.000 veces más eficaz que el cloro. Sin residuos. Sin compromisos.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4">
+        <a href="#specs" class="inline-flex items-center gap-2 text-white font-semibold px-7 py-3.5 rounded-full cursor-pointer transition-all duration-200 hover:scale-105" style="background:#0D9488; box-shadow: 0 0 30px rgba(13,148,136,0.4)">
+          <span data-i18n="oz.cta1">Ver especificaciones</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <a href="#contacto" class="inline-flex items-center gap-2 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-full cursor-pointer hover:border-white/50 hover:bg-white/5 transition-all duration-200">
+          <span data-i18n="oz.cta2">Solicitar información</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Badge flotante -->
+    <div class="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:block">
+      <div class="border border-white/10 rounded-3xl p-6 text-center" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(20px); min-width:160px">
+        <p class="text-5xl font-black text-white mb-1">O₃</p>
+        <p class="text-xs font-semibold uppercase tracking-widest" style="color:#0D9488">Ozono Activo</p>
+        <div class="mt-4 space-y-2">
+          <div class="flex justify-between text-xs text-white/50">
+            <span>Eficacia</span><span class="text-white font-semibold">99.9%</span>
+          </div>
+          <div class="flex justify-between text-xs text-white/50">
+            <span>Flujo</span><span class="text-white font-semibold">9.7 L/min</span>
+          </div>
+          <div class="flex justify-between text-xs text-white/50">
+            <span>Temp.</span><span class="text-white font-semibold">5–45 °C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30" style="z-index:3">
+    <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
+    <svg class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<!-- ── ESPECIFICACIONES ── -->
+<section id="specs" class="py-28 px-6" style="background:#050505">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-20 reveal">
+      <span class="text-xs font-semibold uppercase tracking-widest" style="color:#0D9488" data-i18n="oz.specs.tag">Especificaciones técnicas</span>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4" data-i18n="oz.specs.h2">Ingeniería de precisión</h2>
+      <p class="text-white/40 max-w-lg mx-auto" data-i18n="oz.specs.desc">Cada detalle del sistema AQUOMAR Ozono está optimizado para ofrecer el agua más pura posible.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 stagger" id="specs-grid">
+      <div class="spec-card rounded-2xl p-6 text-center">
+        <p class="text-4xl font-black text-white mb-1"><span class="count-num" data-target="9.7" data-decimals="1">0</span></p>
+        <p class="text-xs uppercase tracking-widest" style="color:#0D9488">L/min flujo</p>
+      </div>
+      <div class="spec-card rounded-2xl p-6 text-center">
+        <p class="text-4xl font-black text-white mb-1"><span class="count-num" data-target="3000" data-suffix="x">0</span></p>
+        <p class="text-xs uppercase tracking-widest" style="color:#0D9488">vs Cloro</p>
+      </div>
+      <div class="spec-card rounded-2xl p-6 text-center">
+        <p class="text-4xl font-black text-white mb-1"><span class="count-num" data-target="99.9" data-decimals="1" data-suffix="%">0</span></p>
+        <p class="text-xs uppercase tracking-widest" style="color:#0D9488">Eficacia</p>
+      </div>
+      <div class="spec-card rounded-2xl p-6 text-center">
+        <p class="text-4xl font-black text-white mb-1"><span class="count-num" data-target="0">0</span></p>
+        <p class="text-xs uppercase tracking-widest" style="color:#0D9488">Residuos químicos</p>
+      </div>
+    </div>
+
+    <!-- Tech specs — Apple-style cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 stagger" id="specs-table">
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:0ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Modelo</p>
+        <p class="text-white font-semibold text-base leading-snug" style="letter-spacing:-0.01em">AQUOMAR<br/>O₃ Pro</p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:60ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Caudal</p>
+        <p class="text-white font-semibold leading-snug" style="letter-spacing:-0.02em"><span class="text-3xl font-black">9.7</span><span class="text-sm ml-1 text-white/60">L/min</span></p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:120ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Temperatura</p>
+        <p class="text-white font-semibold text-base leading-snug" style="letter-spacing:-0.01em">5 – 45 °C</p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:180ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Potencia</p>
+        <p class="text-white font-semibold leading-snug" style="letter-spacing:-0.02em"><span class="text-3xl font-black">45</span><span class="text-sm ml-1 text-white/60">W</span></p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:240ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Display</p>
+        <p class="text-white font-semibold text-base leading-snug" style="letter-spacing:-0.01em">LED digital<br/>multifunción</p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:300ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Indicadores O₃</p>
+        <p class="text-white font-semibold text-base leading-snug" style="letter-spacing:-0.01em">100% / 50%<br/>/ Alerta</p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:360ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Conexiones</p>
+        <p class="text-white font-semibold leading-snug" style="letter-spacing:-0.02em"><span class="text-3xl font-black">4</span><span class="text-sm ml-2 text-white/60">puertos</span></p>
+      </div>
+      <div class="spec-apple-card rounded-2xl p-6 table-row glow-on-scroll" style="transition-delay:420ms">
+        <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.35); letter-spacing:0.1em">Garantía</p>
+        <p class="text-white font-semibold leading-snug" style="letter-spacing:-0.02em"><span class="text-3xl font-black">2</span><span class="text-sm ml-1 text-white/60">años</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ── -->
+<section class="py-28 px-6" style="background:#080808">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <!-- Text -->
+      <div class="reveal-left">
+        <span class="text-xs font-semibold uppercase tracking-widest" style="color:#0D9488" data-i18n="oz.how.tag">Tecnología</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-6" data-i18n="oz.how.h2">Desinfección sin química</h2>
+        <p class="text-white/50 leading-relaxed mb-10" data-i18n="oz.how.desc">El ozono es el tercer agente oxidante más potente del planeta. Actúa en segundos y se convierte en oxígeno puro.</p>
+        <div class="space-y-6">
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-black text-sm" style="background:rgba(13,148,136,0.2); color:#0D9488">01</div>
+            <div>
+              <h4 class="font-bold text-white mb-1" data-i18n="oz.how.s1.t">Generación</h4>
+              <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.how.s1.d">El equipo convierte oxígeno del aire en ozono (O₃) mediante tecnología de descarga eléctrica corona.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-black text-sm" style="background:rgba(13,148,136,0.2); color:#0D9488">02</div>
+            <div>
+              <h4 class="font-bold text-white mb-1" data-i18n="oz.how.s2.t">Inyección</h4>
+              <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.how.s2.d">El ozono se disuelve en el agua mediante un sistema venturi de alta eficiencia, garantizando una distribución uniforme.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-black text-sm" style="background:rgba(13,148,136,0.2); color:#0D9488">03</div>
+            <div>
+              <h4 class="font-bold text-white mb-1" data-i18n="oz.how.s3.t">Desinfección total</h4>
+              <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.how.s3.d">El O₃ destruye la membrana celular de patógenos en milisegundos y se convierte en O₂ sin residuos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product image -->
+      <div class="reveal-right flex justify-center">
+        <div class="relative">
+          <!-- Glow effect -->
+          <div class="absolute inset-0 rounded-3xl blur-3xl opacity-30" style="background:radial-gradient(circle, #0D9488, transparent 70%)"></div>
+          <img src="assets/ozono.webp" alt="AQUOMAR Ozono"
+        class="relative rounded-3xl w-full max-w-md product-float"
+        style="filter: drop-shadow(0 0 40px rgba(13,148,136,0.3))" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VENTAJAS ── -->
+<section class="py-28 px-6" style="background:#050505">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="text-xs font-semibold uppercase tracking-widest" style="color:#0D9488" data-i18n="oz.vent.tag">Ventajas</span>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-3" data-i18n="oz.vent.h2">Por qué el ozono es<br/>el futuro del agua</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4 stagger" id="feats-grid">
+      <div class="feat-card rounded-2xl p-7">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:rgba(13,148,136,0.15)">
+          <svg class="w-5 h-5" style="color:#0D9488" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2" data-i18n="oz.v1.t">3.000× más eficaz que el cloro</h3>
+        <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.v1.d">Destruye bacterias, virus, hongos y esporas que el cloro no puede eliminar.</p>
+      </div>
+      <div class="feat-card rounded-2xl p-7">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:rgba(13,148,136,0.15)">
+          <svg class="w-5 h-5" style="color:#0D9488" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2" data-i18n="oz.v2.t">Cero residuos químicos</h3>
+        <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.v2.d">El ozono sobrante se descompone de forma natural en oxígeno puro en 15-30 minutos.</p>
+      </div>
+      <div class="feat-card rounded-2xl p-7">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:rgba(13,148,136,0.15)">
+          <svg class="w-5 h-5" style="color:#0D9488" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2" data-i18n="oz.v3.t">Desinfecta agua, aire y superficies</h3>
+        <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.v3.d">Un único equipo protege tu hogar o negocio en tres medios distintos simultáneamente.</p>
+      </div>
+      <div class="feat-card rounded-2xl p-7">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:rgba(3,105,161,0.15)">
+          <svg class="w-5 h-5 text-ocean" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2" data-i18n="oz.v4.t">Ecológico 100%</h3>
+        <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.v4.d">Reduce el uso de cloro y productos químicos. Una solución respetuosa con el medioambiente.</p>
+      </div>
+      <div class="feat-card rounded-2xl p-7">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:rgba(3,105,161,0.15)">
+          <svg class="w-5 h-5 text-ocean" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2" data-i18n="oz.v5.t">Tecnología certificada</h3>
+        <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.v5.d">Certificado CE, aprobado por la OMS y reconocido por las autoridades sanitarias europeas.</p>
+      </div>
+      <div class="feat-card rounded-2xl p-7">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:rgba(3,105,161,0.15)">
+          <svg class="w-5 h-5 text-ocean" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2" data-i18n="oz.v6.t">Instalación en 30 minutos</h3>
+        <p class="text-white/40 text-sm leading-relaxed" data-i18n="oz.v6.d">Sin obras, sin fontanería compleja. Nuestros técnicos configuran el equipo en tu domicilio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contacto" class="py-24 px-4 relative overflow-hidden" style="background:linear-gradient(160deg,#050505 0%,#080d0d 60%,#060b0a 100%)">
+  <!-- Teal ambient glows -->
+  <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(13,148,136,0.18) 0%,transparent 70%);filter:blur(70px)"></div>
+  <div class="absolute bottom-0 left-1/4 w-80 h-80 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(3,105,161,0.14) 0%,transparent 70%);filter:blur(60px)"></div>
+
+  <div class="max-w-2xl mx-auto relative" style="z-index:1">
+
+    <!-- Header -->
+    <div class="text-center mb-10 reveal">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full" style="color:#2dd4bf;background:rgba(13,148,136,0.12);border:1px solid rgba(13,148,136,0.25)" data-i18n="oz.cont.tag">Contacto</span>
+      <h2 class="text-3xl md:text-4xl font-black text-white mb-3" data-i18n="oz.cont.h2">¿Interesado en el<br/>sistema de ozono?</h2>
+      <p class="text-white/40 text-sm md:text-base" data-i18n="oz.cont.desc">Nuestros especialistas te asesoran sin compromiso. Solicita una demostración gratuita.</p>
+    </div>
+
+    <!-- Glass card -->
+    <div class="reveal relative rounded-3xl overflow-hidden"
+         style="background:rgba(255,255,255,0.05);
+                backdrop-filter:blur(28px);
+                -webkit-backdrop-filter:blur(28px);
+                border:1px solid rgba(255,255,255,0.10);
+                box-shadow:0 8px 60px rgba(0,0,0,0.50), 0 0 80px rgba(13,148,136,0.08), inset 0 1px 0 rgba(255,255,255,0.08)">
+
+      <!-- Inner teal glow top-right -->
+      <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(13,148,136,0.20) 0%,transparent 70%)"></div>
+
+      <!-- Form header strip -->
+      <div class="px-6 sm:px-8 pt-6 pb-5 flex items-center gap-3" style="border-bottom:1px solid rgba(255,255,255,0.07)">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.25);border:1px solid rgba(13,148,136,0.35)">
+          <svg class="w-4 h-4" style="color:#2dd4bf" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm" data-i18n="hero.form.badge">Consulta gratuita</p>
+          <p class="text-white/35 text-xs">Sin compromiso · Respuesta en 1h</p>
+        </div>
+        <span class="ml-auto flex items-center gap-1.5 text-xs font-semibold" style="color:#2dd4bf">
+          <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#2dd4bf;box-shadow:0 0 6px #2dd4bf"></span>
+          Online
+        </span>
+      </div>
+
+      <!-- Form body -->
+      <form class="space-y-4 p-6 sm:p-8" id="contacto-form">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold mb-2 uppercase tracking-wide" style="color:rgba(255,255,255,0.35)" data-i18n="cont.lbl.nombre">Nombre *</label>
+            <input type="text" required placeholder="Tu nombre" data-i18n-ph="cont.ph.nombre"
+              class="w-full px-4 py-3 rounded-2xl text-sm text-white placeholder-white/25 focus:outline-none transition-all duration-200"
+              style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.10);min-height:44px"
+              onfocus="this.style.background='rgba(255,255,255,0.11)';this.style.borderColor='rgba(13,148,136,0.60)';this.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)'"
+              onblur="this.style.background='rgba(255,255,255,0.07)';this.style.borderColor='rgba(255,255,255,0.10)';this.style.boxShadow='none'" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2 uppercase tracking-wide" style="color:rgba(255,255,255,0.35)" data-i18n="cont.lbl.tel2">Teléfono</label>
+            <input type="tel" placeholder="+34 600 000 000"
+              class="w-full px-4 py-3 rounded-2xl text-sm text-white placeholder-white/25 focus:outline-none transition-all duration-200"
+              style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.10);min-height:44px"
+              onfocus="this.style.background='rgba(255,255,255,0.11)';this.style.borderColor='rgba(13,148,136,0.60)';this.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)'"
+              onblur="this.style.background='rgba(255,255,255,0.07)';this.style.borderColor='rgba(255,255,255,0.10)';this.style.boxShadow='none'" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold mb-2 uppercase tracking-wide" style="color:rgba(255,255,255,0.35)" data-i18n="cont.lbl.email2">Email *</label>
+          <input type="email" required placeholder="tu@email.com"
+            class="w-full px-4 py-3 rounded-2xl text-sm text-white placeholder-white/25 focus:outline-none transition-all duration-200"
+            style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.10);min-height:44px"
+            onfocus="this.style.background='rgba(255,255,255,0.11)';this.style.borderColor='rgba(13,148,136,0.60)';this.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)'"
+            onblur="this.style.background='rgba(255,255,255,0.07)';this.style.borderColor='rgba(255,255,255,0.10)';this.style.boxShadow='none'" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold mb-2 uppercase tracking-wide" style="color:rgba(255,255,255,0.35)" data-i18n="cont.lbl.msg">Mensaje</label>
+          <textarea rows="4" placeholder="Cuéntanos tu caso..." data-i18n-ph="cont.ph.msg"
+            class="w-full px-4 py-3 rounded-2xl text-sm text-white placeholder-white/25 focus:outline-none transition-all duration-200 resize-none"
+            style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.10)"
+            onfocus="this.style.background='rgba(255,255,255,0.11)';this.style.borderColor='rgba(13,148,136,0.60)';this.style.boxShadow='0 0 0 3px rgba(13,148,136,0.12)'"
+            onblur="this.style.background='rgba(255,255,255,0.07)';this.style.borderColor='rgba(255,255,255,0.10)';this.style.boxShadow='none'"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-2xl font-bold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer min-h-[48px]"
+          style="background:linear-gradient(135deg,#0D9488 0%,#0f766e 100%);box-shadow:0 4px 20px rgba(13,148,136,0.35),0 0 40px rgba(13,148,136,0.15)">
+          <span data-i18n="oz.cont.submit">Solicitar demostración</span>
+        </button>
+        <p class="text-center text-xs" style="color:rgba(255,255,255,0.20)" data-i18n="hero.disclaimer">Sin compromiso · Respuesta en &lt;24h · 100% confidencial</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER MÍNIMO ── -->
+<footer class="py-8 px-6 border-t" style="border-color:rgba(255,255,255,0.06); background:#050505">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#0369A1,#0D9488)">
+        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 8 4 12 4 16a8 8 0 0016 0c0-4-4-8-8-14z"/></svg>
+      </div>
+      <span class="text-white/60 text-sm font-semibold">AQUO<span style="color:#0EA5E9">MAR</span> Water Systems</span>
+    </div>
+    <p class="text-white/20 text-xs">© 2026 AQUOMAR. Todos los derechos reservados.</p>
+    <a href="index.html" class="text-white/30 hover:text-white text-sm transition-colors cursor-pointer">← Volver al inicio</a>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/34624959207" target="_blank" rel="noopener" class="fab" aria-label="WhatsApp">
+  <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // ── 1. Scroll progress bar ──
+  const bar = document.getElementById('progress-bar');
+  function updateBar() {
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+
+  // ── 2. Navbar scroll ──
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30), { passive: true });
+
+  // ── 3. Parallax hero video ──
+  const heroVideo = document.querySelector('.hero-section video');
+  window.addEventListener('scroll', () => {
+    if (heroVideo) heroVideo.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+  }, { passive: true });
+
+  // ── 4. IntersectionObserver general ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .split-line, .stagger, .glow-on-scroll, .step-reveal, .table-row, .section-fade'
+  ).forEach(el => observer.observe(el));
+
+  // ── 5. Hero split-line — trigger immediately ──
+  setTimeout(() => {
+    document.querySelectorAll('.hero-section .split-line').forEach(el => el.classList.add('visible'));
+  }, 300);
+
+  // ── 6. Hero content entrance ──
+  const heroContent = document.querySelector('.hero-section .relative.max-w-7xl');
+  if (heroContent) {
+    heroContent.style.opacity = '0';
+    heroContent.style.transform = 'translateY(24px)';
+    setTimeout(() => {
+      heroContent.style.transition = 'opacity .9s ease, transform .9s ease';
+      heroContent.style.opacity = '1';
+      heroContent.style.transform = 'translateY(0)';
+    }, 150);
+  }
+
+  // ── 7. Animated counters ──
+  function animateCounter(el) {
+    const target   = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0');
+    const suffix   = el.dataset.suffix || '';
+    const duration = 1800;
+    const start    = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease     = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const val      = ease * target;
+      el.textContent = val.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.count-num').forEach(animateCounter);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const specsGrid = document.getElementById('specs-grid');
+  if (specsGrid) counterObs.observe(specsGrid);
+
+  // ── 8. Form submit → CallMeBot (WhatsApp directo, sin salir de la página) ──
+  const CALLMEBOT_KEY = 'PENDIENTE'; // ← pegar aquí el apikey de CallMeBot
+  const WA_PHONE = '34624959207';
+
+  function buildWAMessage(fields, page) {
+    const lines = ['🌊 *Nueva solicitud AQUOMAR*', '─────────────────────'];
+    if (page) lines.push(`📍 ${page}`);
+    fields.forEach(({ label, value }) => {
+      if (value && value.trim()) lines.push(`*${label}:* ${value.trim()}`);
+    });
+    lines.push('─────────────────────');
+    lines.push('_aquomar.es_');
+    return encodeURIComponent(lines.join('\n'));
+  }
+
+  function dispatchWA(fields, page) {
+    const text = buildWAMessage(fields, page);
+    const url = `https://api.callmebot.com/whatsapp.php?phone=${WA_PHONE}&text=${text}&apikey=${CALLMEBOT_KEY}`;
+    fetch(url, { mode: 'no-cors' }).catch(() => {});
+  }
+
+  function showFormSuccess(formEl, accentColor) {
+    const accent = accentColor || '#0D9488';
+    const savedHTML = formEl.innerHTML;
+    formEl.innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                  padding:3rem 1.5rem;text-align:center;gap:1.25rem;min-height:220px;animation:fadeIn .4s ease both">
+        <div style="width:64px;height:64px;border-radius:50%;background:${accent}22;
+                    border:2px solid ${accent};display:flex;align-items:center;justify-content:center">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div>
+          <p style="font-size:1.25rem;font-weight:700;color:#fff;letter-spacing:-.02em;margin:0 0 .4rem">
+            ¡Mensaje recibido!
+          </p>
+          <p style="font-size:.9rem;color:rgba(255,255,255,.55);margin:0;line-height:1.6">
+            Nos ponemos en contacto contigo<br>
+            <strong style="color:rgba(255,255,255,.80)">en menos de 1 hora</strong> ⚡
+          </p>
+        </div>
+        <button type="button"
+          style="margin-top:.5rem;font-size:.78rem;color:rgba(255,255,255,.35);background:none;
+                 border:none;cursor:pointer;text-decoration:underline;padding:0"
+          onmouseenter="this.style.color='rgba(255,255,255,.7)'"
+          onmouseleave="this.style.color='rgba(255,255,255,.35)'">
+          Enviar otro mensaje
+        </button>
+      </div>`;
+    const btn = formEl.querySelector('button[type="button"]');
+    if (btn) btn.onclick = () => { formEl.innerHTML = savedHTML; };
+  }
+
+  document.getElementById('contacto-form')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    const inputs = f.querySelectorAll('input, textarea');
+    const fields = [
+      { label: 'Nombre',   value: inputs[0]?.value },
+      { label: 'Teléfono', value: inputs[1]?.value },
+      { label: 'Email',    value: inputs[2]?.value },
+      { label: 'Mensaje',  value: inputs[3]?.value },
+    ];
+    dispatchWA(fields, 'Sistema de Ozono');
+    showFormSuccess(f, '#0D9488');
+  });
+</script>
+<!-- Multilingual support -->
+<script src="translations.js"></script>
+</body>
+</html>

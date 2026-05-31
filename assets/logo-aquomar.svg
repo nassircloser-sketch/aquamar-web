@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 160" fill="none">
+  <!-- Icon: circle ring with A inside + water drop -->
+  <g transform="translate(40, 10)">
+    <!-- Outer ring -->
+    <circle cx="60" cy="58" r="46" stroke="white" stroke-width="6" fill="none"/>
+    <!-- Letter A shape inside ring -->
+    <path d="M60 18 L82 78 H38 Z" stroke="white" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="46" y1="62" x2="74" y2="62" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    <!-- Water drop hanging from bottom of circle -->
+    <path d="M60 100 C52 90, 44 82, 44 76 C44 68, 51.5 62, 60 62 C68.5 62, 76 68, 76 76 C76 82, 68 90, 60 100Z"
+          fill="url(#dropGrad)" opacity="0.95"/>
+    <!-- Drop highlight -->
+    <ellipse cx="55" cy="72" rx="4" ry="6" fill="white" opacity="0.3" transform="rotate(-20,55,72)"/>
+  </g>
+
+  <!-- AQUOMAR text -->
+  <text x="122" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="38" font-weight="700" letter-spacing="3" fill="white">AQU</text>
+  <!-- O with drop accent -->
+  <text x="220" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="38" font-weight="700" letter-spacing="3" fill="url(#dropGrad)">O</text>
+  <text x="248" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="38" font-weight="700" letter-spacing="3" fill="white">MAR</text>
+
+  <!-- WATER SYSTEMS subtitle -->
+  <text x="122" y="96" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="13" font-weight="400" letter-spacing="6" fill="rgba(180,210,240,0.75)">WATER SYSTEMS</text>
+
+  <!-- Gradient for drop -->
+  <defs>
+    <linearGradient id="dropGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60c8f0"/>
+      <stop offset="100%" stop-color="#1e80c8"/>
+    </linearGradient>
+  </defs>
+</svg>
